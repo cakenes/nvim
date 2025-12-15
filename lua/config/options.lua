@@ -21,8 +21,22 @@ vim.opt.relativenumber = false
 vim.opt.number = true
 vim.opt.wrap = false
 
+-- Copilot
+vim.g.copilot_no_tab_map = true
+
 -- Indentation, sleuth will override these
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
+
+vim.diagnostic.config({
+    underline = {
+        severity = { min = vim.diagnostic.severity.WARN },
+    },
+    virtual_text = {
+        severity = { min = vim.diagnostic.severity.WARN },
+    },
+    signs = true,
+    update_in_insert = false,
+})

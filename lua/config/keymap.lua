@@ -13,6 +13,12 @@ vim.keymap.set("n", "<cr>", "o<Esc>", { desc = "Insert new line below" })
 vim.keymap.set("n", "<S-cr>", "O<Esc>", { desc = "Insert new line above" })
 vim.keymap.set({ "n", "i", "v", "s", "t" }, "~", "<Esc>", { desc = "Map tilde to Esc in all modes" })
 
+-- Ai
+vim.keymap.set("n", "<leader>ab", function() Copilot_chat("CopilotChatBuffer") end, { desc = "Code: Copilot in current buffer" })
+vim.keymap.set({"n", "v"}, "<leader>ac", function() Copilot_chat("CopilotChatAllBuffer") end, { desc = "Code: Copilot in all buffers" })
+vim.keymap.set({"n", "v"}, "<leader>at", "<cmd>CopilotChatToggle<cr>", { desc = "Code: Copilot toggle" })
+vim.keymap.set("n", "<leader>am", "<cmd>CopilotChatModels<cr>", { desc = "Code: Copilot models" })
+
 -- Buffer
 vim.keymap.set("n", "<leader>bb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>",{ desc = "Buffer: List" })
 vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Buffer: Delete" })
@@ -30,9 +36,6 @@ vim.keymap.set("n", "<Tab>", "<cmd>bnext<cr>", { desc = "Buffer: Next" })
 vim.keymap.set("n", "<C-Esc>", "<cmd>bdelete<cr>", { desc = "Buffer: Delete" })
 
 -- Code
-vim.keymap.set("n", "<leader>cb", function() Copilot_chat("CopilotChatBuffer") end, { desc = "Code: Copilot in current buffer" })
-vim.keymap.set({"n", "v"}, "<leader>cc", function() Copilot_chat("CopilotChatAllBuffer") end, { desc = "Code: Copilot in all buffers" })
-vim.keymap.set({"n", "v"}, "<leader>ct", "<cmd>CopilotChatToggle<cr>", { desc = "Code: Copilot toggle" })
 vim.keymap.set({"n", "v"}, "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>", { desc = "Code: Rename" })
 vim.keymap.set("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", { desc = "Code: Rename" })
 vim.keymap.set("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { desc = "Code: Action" })
@@ -66,11 +69,11 @@ vim.keymap.set("n", "<leader>eb", "<cmd>Neotree buffers<cr>", { desc = "Explorer
 vim.keymap.set("n", "<leader>ef", "<cmd>Neotree float<cr>", { desc = "Explorer: Float" })
 
 -- Find
-vim.keymap.set("n", "<leader><space>", "<cmd>Telescope git_files<cr>", { desc = "Find: Git" })
+vim.keymap.set("n", "<leader><space>", "<cmd>Telescope oldfiles<cr>", { desc = "Find: Recent" })
 vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Find: Grep" })
 vim.keymap.set("n", "<leader>fG", function() Grep_cached_files() end, { desc = "Find: Cached grep" })
 vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Find: Recent" })
-vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find: Files" })
+vim.keymap.set("n", "<leader>ff", "<cmd>Telescope git_files<cr>", { desc = "Find: Git" })
 vim.keymap.set("n", "<leader>fa", "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<cr>", { desc = "Find: All" })
 vim.keymap.set("n", "<leader>fb", "<cmd>Telescope git_commits<cr>", { desc = "Find: Git commit" })
 vim.keymap.set("n", "<leader>fc", "<cmd>Telescope git_bcommits<cr>", { desc = "Find: Git commit (current file)" })
