@@ -55,7 +55,7 @@ vim.keymap.set("n", "<leader>do", "<cmd>DapStepOut<cr>", { desc = "Debug: Step o
 vim.keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<cr>", { desc = "Debug: Toggle breakpoint" })
 
 -- Git
-vim.keymap.set("n", "<leader>gd", "<cmd>Telescope git_status<cr>", { desc = "Git: Diff/status" })
+vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Git: Diff/status" })
 vim.keymap.set("n", "<leader>gi", "<cmd>Octo issue list<cr>", { desc = "Git: Github issues" })
 vim.keymap.set("n", "<leader>gp", "<cmd>Octo pr list<cr>", { desc = "Git: Github pull requests" })
 vim.keymap.set("n", "<leader>gw", "<cmd>Octo workflow list<cr>", { desc = "Git: Github workflow list" })
@@ -69,7 +69,7 @@ vim.keymap.set("n", "<leader>eb", "<cmd>Neotree buffers<cr>", { desc = "Explorer
 vim.keymap.set("n", "<leader>ef", "<cmd>Neotree float<cr>", { desc = "Explorer: Float" })
 
 -- Find
-vim.keymap.set("n", "<leader><space>", "<cmd>Telescope oldfiles<cr>", { desc = "Find: Recent" })
+vim.keymap.set("n", "<leader><space>", function() Project_oldfiles() end, { desc = "Find: Project recent" })
 vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Find: Grep" })
 vim.keymap.set("n", "<leader>fG", function() Grep_cached_files() end, { desc = "Find: Cached grep" })
 vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Find: Recent" })

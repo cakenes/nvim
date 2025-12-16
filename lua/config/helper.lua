@@ -77,3 +77,26 @@ function Dual_neotree()
         vim.cmd("belowright split | Neotree show filesystem")
     end
 end
+
+function Project_oldfiles()
+    local telescope = require("telescope")
+    local builtin = require("telescope.builtin")
+
+    local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+    if git_root == nil or git_root == "" then
+        git_root = vim.fn.getcwd()
+    end
+
+    local files = {}
+    for _, f in ipairs(vim.v.oldfiles) do
+        if string.find(f, git_root, 1, true) then
+            table.insert(files, f)
+        end
+    end
+
+    builtin.oldfiles({
+        cwd = git_root,
+        only_cwd = true,
+        results = files,
+    })
+end
