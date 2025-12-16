@@ -55,7 +55,7 @@ vim.keymap.set("n", "<leader>do", "<cmd>DapStepOut<cr>", { desc = "Debug: Step o
 vim.keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<cr>", { desc = "Debug: Toggle breakpoint" })
 
 -- Git
-vim.keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<cr>", { desc = "Git: Diff/status" })
+vim.keymap.set("n", "<leader>gd", "<cmd>Telescope git_status<cr>", { desc = "Git: Diff/status" })
 vim.keymap.set("n", "<leader>gi", "<cmd>Octo issue list<cr>", { desc = "Git: Github issues" })
 vim.keymap.set("n", "<leader>gp", "<cmd>Octo pr list<cr>", { desc = "Git: Github pull requests" })
 vim.keymap.set("n", "<leader>gw", "<cmd>Octo workflow list<cr>", { desc = "Git: Github workflow list" })

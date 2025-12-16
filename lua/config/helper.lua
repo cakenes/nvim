@@ -47,6 +47,7 @@ end
 
 function Grep_cached_files()
     local builtin = require("telescope.builtin")
+
     local files = vim.fn.systemlist("git ls-files --cached")
 
     if #files == 0 then
