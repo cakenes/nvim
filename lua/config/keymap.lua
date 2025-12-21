@@ -14,6 +14,7 @@ vim.keymap.set("n", "<S-cr>", "O<Esc>", { desc = "Insert new line above" })
 vim.keymap.set({ "n", "i", "v", "s", "t" }, "~", "<Esc>", { desc = "Map tilde to Esc in all modes" })
 vim.keymap.set("n", "<Tab>", ">>", { desc = "Indent line(s) right" })
 vim.keymap.set("n", "<C-Tab>", "<<", { desc = "Indent line(s) left" })
+vim.keymap.set("n", "<BS>", "X", { desc = "Delete char before cursor" })
 
 -- Ai
 vim.keymap.set("n", "<leader>ab", function() Copilot_chat("CopilotChatBuffer") end, { desc = "Code: Copilot in current buffer" })
