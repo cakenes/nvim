@@ -12,6 +12,8 @@ vim.keymap.set({ "i", "x", "n" }, "<A-Down>", "<cmd>m +1<cr>", { desc = "Move li
 vim.keymap.set("n", "<cr>", "o<Esc>", { desc = "Insert new line below" })
 vim.keymap.set("n", "<S-cr>", "O<Esc>", { desc = "Insert new line above" })
 vim.keymap.set({ "n", "i", "v", "s", "t" }, "~", "<Esc>", { desc = "Map tilde to Esc in all modes" })
+vim.keymap.set("n", "<Tab>", ">>", { desc = "Indent line(s) right" })
+vim.keymap.set("n", "<C-Tab>", "<<", { desc = "Indent line(s) left" })
 
 -- Ai
 vim.keymap.set("n", "<leader>ab", function() Copilot_chat("CopilotChatBuffer") end, { desc = "Code: Copilot in current buffer" })
@@ -31,8 +33,8 @@ vim.keymap.set("n", "<leader>ba", "<cmd>bufdo bdelete<cr>", { desc = "Buffer: De
 vim.keymap.set("n", "<leader>bA", "<cmd>bufdo bdelete!<cr>", { desc = "Buffer: Force delete all" })
 vim.keymap.set("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { desc = "Buffer: Prev" })
 vim.keymap.set("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Buffer: Next" })
-vim.keymap.set("n", "<C-Tab>", "<cmd>bprevious<cr>", { desc = "Buffer: Prev" })
-vim.keymap.set("n", "<Tab>", "<cmd>bnext<cr>", { desc = "Buffer: Next" })
+vim.keymap.set("n", "<leader>b<Tab>", "<cmd>bnext<cr>", { desc = "Buffer: Next" })
+vim.keymap.set("n", "<leader>b<C-Tab>", "<cmd>bprevious<cr>", { desc = "Buffer: Prev" })
 vim.keymap.set("n", "<C-Esc>", "<cmd>bdelete<cr>", { desc = "Buffer: Delete" })
 
 -- Code
