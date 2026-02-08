@@ -28,5 +28,7 @@ return {
         vim.api.nvim_set_hl(0, "GitSignsDeleteLn", { bg = "#221F1F" })
 
         vim.api.nvim_set_hl(0, "NeoTreeFileNameOpened", { fg = c.vscBlue, bg = "NONE", bold = true })
+
+        vim.api.nvim_set_hl(0, "ScrollbarHandle", { bg = c.vscDarkBlue, fg = "NONE" })
     end,
 }
