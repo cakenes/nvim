@@ -23,12 +23,20 @@ return {
         vim.api.nvim_set_hl(0, "DiagnosticUnderLineHint", { fg = c.vscLineNumber, bg = "NONE" })
         vim.api.nvim_set_hl(0, "NeoTreeCursorLine", { bg = c.vscDarkBlue })
 
-        vim.api.nvim_set_hl(0, "GitSignsAddLn", { bg = "#222522" })
-        vim.api.nvim_set_hl(0, "GitSignsChangeLn", { bg = "#22221F" })
-        vim.api.nvim_set_hl(0, "GitSignsDeleteLn", { bg = "#221F1F" })
+        vim.api.nvim_set_hl(0, "GitSingsDeleteLn", { fg = "#222020", bg = "NONE" })
+        vim.api.nvim_set_hl(0, "GitSingsChangeLn", { fg = "#242221", bg = "NONE" })
+        vim.api.nvim_set_hl(0, "GitSignsAddLn", { fg = "#222522", bg = "NONE" })
+
+        vim.api.nvim_set_hl(0, "GitBlame", { fg = c.vscLineNumber, bg = "#222222" })
 
         vim.api.nvim_set_hl(0, "NeoTreeFileNameOpened", { fg = c.vscBlue, bg = "NONE", bold = true })
 
         vim.api.nvim_set_hl(0, "ScrollbarHandle", { bg = c.vscDarkBlue, fg = "NONE" })
+        vim.api.nvim_set_hl(0, "ScrollbarSearch", { bg = "#1E1E1E", fg = "#6A9955" })
+        vim.api.nvim_set_hl(0, "ScrollbarSearchHandle", { bg = c.vscDarkBlue, fg = "#6A9955" })
+
+        vim.api.nvim_set_hl(0, "HlSearchLens", { fg = c.vscLineNumber, bg = "NONE", blend = 100 })
+        vim.api.nvim_set_hl(0, "HlSearchLensNear", { fg = c.vscLineNumber, bg = "NONE", blend = 100 })
+        vim.api.nvim_set_hl(0, "HlSearchLensCurrent", { fg = c.vscLineNumber, bg = "NONE", blend = 100 })
     end,
 }
