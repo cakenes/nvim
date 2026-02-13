@@ -64,6 +64,7 @@ vim.keymap.set("n", "<leader>gp", "<cmd>Octo pr list<cr>", { desc = "Git: Github
 vim.keymap.set("n", "<leader>gw", "<cmd>Octo workflow list<cr>", { desc = "Git: Github workflow list" })
 vim.keymap.set("n", "<leader>gr", "<cmd>Octo run list<cr>", { desc = "Git: Github run list" })
 vim.keymap.set("n", "<leader>gc", "<cmd>Octo issue create<cr>", { desc = "Git: Github create issue" })
+vim.keymap.set("n", "<leader>gl", "<cmd>LazyGit<cr>", { desc = "Git: Lazy" })
 
 -- Explorer
 vim.keymap.set("n", "<leader>ee", function () Dual_neotree() end, { desc = "Explorer: Toggle" })
