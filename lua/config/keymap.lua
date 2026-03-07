@@ -19,9 +19,8 @@ vim.keymap.set({"v"}, "<S-Tab>", "<gv", { desc = "Indent left and keep selection
 vim.keymap.set({"v", "n"}, "<BS>", "X", { desc = "Delete char before cursor" })
 
 -- Ai
-vim.keymap.set("n", "<leader>ab", function() Copilot_chat("CopilotChatBuffer") end, { desc = "Code: Copilot in current buffer" })
-vim.keymap.set({"n", "v"}, "<leader>ac", function() Copilot_chat("CopilotChatAllBuffer") end, { desc = "Code: Copilot in all buffers" })
-vim.keymap.set({"n", "v"}, "<leader>at", "<cmd>CopilotChatToggle<cr>", { desc = "Code: Copilot toggle" })
+vim.keymap.set({"n", "v"}, "<leader>aa", "<cmd>CodeCompanion<cr>", { desc = "Ai: Agent prompt" })
+vim.keymap.set({"n", "v"}, "<leader>at", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Ai: Chat toggle" })
 vim.keymap.set("n", "<leader>am", "<cmd>CopilotChatModels<cr>", { desc = "Code: Copilot models" })
 
 -- Buffer
@@ -69,7 +68,7 @@ vim.keymap.set("n", "<leader>gc", "<cmd>Octo issue create<cr>", { desc = "Git: G
 vim.keymap.set("n", "<leader>gl", "<cmd>LazyGit<cr>", { desc = "Git: Lazy" })
 
 -- Explorer
-vim.keymap.set("n", "<leader>ee", "<cmd>Neotree<cr>", { desc = "Explorer: Toggle" })
+vim.keymap.set("n", "<leader>ee", "<cmd>Neotree toggle<cr>", { desc = "Explorer: Toggle" })
 vim.keymap.set("n", "<leader>eg", "<cmd>Neotree git_status<cr>", { desc = "Explorer: Git status" })
 vim.keymap.set("n", "<leader>eb", "<cmd>Neotree buffers<cr>", { desc = "Explorer: Buffers" })
 vim.keymap.set("n", "<leader>ef", "<cmd>Neotree float<cr>", { desc = "Explorer: Float" })

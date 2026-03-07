@@ -27,6 +27,9 @@ return {
         vim.api.nvim_set_hl(0, "GitSingsChangeLn", { fg = "#242221", bg = "NONE" })
         vim.api.nvim_set_hl(0, "GitSignsAddLn", { fg = "#222522", bg = "NONE" })
 
+        vim.api.nvim_set_hl(0, "LazyGitBorder", { fg = c.vscLineNumber, bg = "NONE" })
+        vim.api.nvim_set_hl(0, "FloatBorder", { fg = c.vscLineNumber, bg = "NONE" })
+
         vim.api.nvim_set_hl(0, "GitBlame", { fg = c.vscLineNumber, bg = "#222222" })
 
         vim.api.nvim_set_hl(0, "NeoTreeFileNameOpened", { fg = c.vscBlue, bg = "NONE", bold = true })
