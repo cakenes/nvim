@@ -26,4 +26,12 @@ require("config.options")
 require("config.helper")
 require("lazy").setup({
     spec = { { import = "plugins" } },
+    ui = {
+        border = "rounded",
+        backdrop = 100,
+        size = {
+            width = 0.8,
+            height = 0.8,
+        },
+    },
 })
