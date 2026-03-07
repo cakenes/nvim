@@ -12,9 +12,11 @@ vim.keymap.set({ "i", "x", "n" }, "<A-Down>", "<cmd>m +1<cr>", { desc = "Move li
 vim.keymap.set("n", "<cr>", "o<Esc>", { desc = "Insert new line below" })
 vim.keymap.set("n", "<S-cr>", "O<Esc>", { desc = "Insert new line above" })
 vim.keymap.set({ "n", "i", "v", "s", "t" }, "~", "<Esc>", { desc = "Map tilde to Esc in all modes" })
-vim.keymap.set("n", "<Tab>", ">>", { desc = "Indent line(s) right" })
-vim.keymap.set("n", "<C-Tab>", "<<", { desc = "Indent line(s) left" })
-vim.keymap.set("n", "<BS>", "X", { desc = "Delete char before cursor" })
+vim.keymap.set("n", "<Tab>", ">>", { desc = "Indent line right" })
+vim.keymap.set("n", "<S-Tab>", "<<", { desc = "Indent line left" })
+vim.keymap.set({"v"}, "<Tab>", ">gv", { desc = "Indent right and keep selection" })
+vim.keymap.set({"v"}, "<S-Tab>", "<gv", { desc = "Indent left and keep selection" })
+vim.keymap.set({"v", "n"}, "<BS>", "X", { desc = "Delete char before cursor" })
 
 -- Ai
 vim.keymap.set("n", "<leader>ab", function() Copilot_chat("CopilotChatBuffer") end, { desc = "Code: Copilot in current buffer" })
@@ -67,7 +69,7 @@ vim.keymap.set("n", "<leader>gc", "<cmd>Octo issue create<cr>", { desc = "Git: G
 vim.keymap.set("n", "<leader>gl", "<cmd>LazyGit<cr>", { desc = "Git: Lazy" })
 
 -- Explorer
-vim.keymap.set("n", "<leader>ee", function () Dual_neotree() end, { desc = "Explorer: Toggle" })
+vim.keymap.set("n", "<leader>ee", "<cmd>Neotree<cr>", { desc = "Explorer: Toggle" })
 vim.keymap.set("n", "<leader>eg", "<cmd>Neotree git_status<cr>", { desc = "Explorer: Git status" })
 vim.keymap.set("n", "<leader>eb", "<cmd>Neotree buffers<cr>", { desc = "Explorer: Buffers" })
 vim.keymap.set("n", "<leader>ef", "<cmd>Neotree float<cr>", { desc = "Explorer: Float" })
