@@ -22,6 +22,7 @@ vim.keymap.set({"v", "n"}, "<BS>", "X", { desc = "Delete char before cursor" })
 -- Ai
 vim.keymap.set({"n", "v"}, "<leader>aa", "<cmd>CodeCompanion<cr>", { desc = "Ai: Agent prompt" })
 vim.keymap.set({"n", "v"}, "<leader>at", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Ai: Chat toggle" })
+vim.keymap.set({"n", "v"}, "<leader>as", function() Codecompanion_stop() end, { desc = "Ai: Stop request" })
 vim.keymap.set("n", "<leader>am", "<cmd>CopilotChatModels<cr>", { desc = "Code: Copilot models" })
 
 -- Buffer
@@ -41,7 +42,7 @@ vim.keymap.set("n", "<leader>b<C-Tab>", "<cmd>bprevious<cr>", { desc = "Buffer: 
 vim.keymap.set("n", "<C-Esc>", "<cmd>bdelete<cr>", { desc = "Buffer: Delete" })
 
 -- Code
-vim.keymap.set({"n", "v"}, "<F2>", "<cmd>lua vim.lsp.buf.rename()<CR>", { desc = "Code: Rename" })
+vim.keymap.set({"n", "v"}, "<F2>", function() Smart_rename() end, { desc = "Code: Rename" })
 vim.keymap.set("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", { desc = "Code: Rename" })
 vim.keymap.set("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { desc = "Code: Action" })
 vim.keymap.set("n", "<leader>cf", "<cmd>lua vim.lsp.buf.format()<CR>", { desc = "Code: Format" })
@@ -51,6 +52,7 @@ vim.keymap.set("n", "<leader>ci", "<cmd>Telescope lsp_implementations<cr>", { de
 vim.keymap.set("n", "<leader>cE", "<cmd>Telescope diagnostics<cr>", { desc = "Code: Diagnostics" })
 vim.keymap.set("n", "<leader>ce", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "Code: Line diagnostics" })
 vim.keymap.set("n", "<leader>cs", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "Code: Symbols" })
+vim.keymap.set("n", "<leader>cc", function() Biome_cleanup() end, { desc = "Code: Biome cleanup" })
 
 -- Debug
 vim.keymap.set("n", "<leader>ds", "<cmd>DapContinue<cr>", { desc = "Debug: Start/continue" })

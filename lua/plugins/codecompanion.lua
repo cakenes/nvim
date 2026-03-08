@@ -8,17 +8,6 @@ return {
         opts = {
             log_level = "DEBUG",
         },
-        strategies = {
-            chat = {
-                adapter = "copilot",
-            },
-            inline = {
-                adapter = "copilot",
-            },
-            cmd = {
-                adapter = "copilot",
-            },
-        },
         display = {
             chat = {
                 start_in_insert_mode = true,
@@ -38,24 +27,47 @@ return {
         },
         interactions = {
             chat = {
+                adapter = "copilot",
                 keymaps = {
                     close = {
                         modes = {
-                            n = { "<C-c>", "q" },
-                            v = { "<C-c>", "q" },
-                            i = { "<C-c>" },
+                            n = { "<C-q>", "q" },
+                            v = { "<C-q>", "q" },
+                            i = { "<C-q>" },
                         },
                         callback = "keymaps.close",
                         description = "[Chat] Close",
                     },
                     stop = {
-                        modes = { n = "<leader>q" },
+                        modes = { 
+                            n = "<C-c>",
+                            v = "<C-c>",
+                            i = "<C-c>",
+                        },
                         callback = "keymaps.stop",
                         description = "[Request] Stop",
+                    },
+                },
+            },
+            inline = {
+                adapter = "copilot",
+            },
+            cmd = {
+                adapter = "copilot",
+            },
+            shared = {
+                keymaps = {
+                    always_accept = {
+                        modes = { n = "g1", v = "g1" },
+                    },
+                    accept_change = {
+                        modes = { n = "g2", v = "g2" },
+                    },
+                    reject_change = {
+                        modes = { n = "g3", v = "g3" },
                     },
                 },
             },
         },
     },
 }
-

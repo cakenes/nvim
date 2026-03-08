@@ -79,6 +79,43 @@ function Dual_neotree()
     end
 end
 
+function Codecompanion_stop()
+    local chat = require("codecompanion").last_chat()
+    if chat then
+        chat:stop()
+    end
+end
+
+local function smart_rename()
+    local old_name = vim.fn.expand("<cword>")
+
+    vim.ui.input({
+        prompt = "Rename (" .. old_name .. "): ",
+        default = "",
+    }, function(new_name)
+        if new_name and #new_name > 0 and new_name ~= old_name then
+            vim.lsp.buf.rename(new_name)
+        end
+    end)
+end
+
+function Smart_rename()
+    local current_name = vim.fn.expand("<cword>")
+    vim.ui.input({
+        prompt = "Rename " .. current_name .. " to: ",
+        default = "",
+    }, function(new_name)
+        if new_name and #new_name > 0 and new_name ~= current_name then
+            vim.lsp.buf.rename(new_name)
+        end
+    end)
+end
+
+function Biome_cleanup()
+    vim.cmd("!biome check --fix --unsafe %")
+    vim.cmd("edit")
+end
+
 function Project_oldfiles()
     local telescope = require("telescope")
     local builtin = require("telescope.builtin")
