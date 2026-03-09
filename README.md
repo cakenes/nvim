@@ -2,6 +2,7 @@
 - github-cli
 - fzf
 - ripgrep
+- lazygit
 
 ## Mason
 * bash-language-server

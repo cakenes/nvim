@@ -52,7 +52,7 @@ vim.keymap.set("n", "<leader>ci", "<cmd>Telescope lsp_implementations<cr>", { de
 vim.keymap.set("n", "<leader>cE", "<cmd>Telescope diagnostics<cr>", { desc = "Code: Diagnostics" })
 vim.keymap.set("n", "<leader>ce", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "Code: Line diagnostics" })
 vim.keymap.set("n", "<leader>cs", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "Code: Symbols" })
-vim.keymap.set("n", "<leader>cc", function() Biome_cleanup() end, { desc = "Code: Biome cleanup" })
+vim.keymap.set("n", "<leader>cc", function() vim.fn.system("biome check --fix --unsafe") end, { desc = "Code: Biome cleanup" })
 
 -- Debug
 vim.keymap.set("n", "<leader>ds", "<cmd>DapContinue<cr>", { desc = "Debug: Start/continue" })
