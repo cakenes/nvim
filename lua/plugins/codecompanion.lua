@@ -4,6 +4,15 @@ return {
         "nvim-lua/plenary.nvim",
         "nvim-treesitter/nvim-treesitter",
     },
+    config = function(_, opts)
+        require("codecompanion").setup(opts)
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = "codecompanion",
+            callback = function()
+                vim.opt_local.buflisted = true
+            end,
+        })
+    end,
     opts = {
         opts = {
             log_level = "DEBUG",
@@ -12,16 +21,7 @@ return {
             chat = {
                 start_in_insert_mode = true,
                 window = {
-                    layout = "float",
-                    border = "rounded",
-                    width = 0.8,
-                    height = 0.8,
-                    relative = "editor",
-                    opts = {
-                        wrap = false,
-                        number = false,
-                        relativenumber = false,
-                    },
+                    layout = "buffer",
                 },
             },
         },

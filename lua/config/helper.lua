@@ -86,19 +86,6 @@ function Codecompanion_stop()
     end
 end
 
-local function smart_rename()
-    local old_name = vim.fn.expand("<cword>")
-
-    vim.ui.input({
-        prompt = "Rename (" .. old_name .. "): ",
-        default = "",
-    }, function(new_name)
-        if new_name and #new_name > 0 and new_name ~= old_name then
-            vim.lsp.buf.rename(new_name)
-        end
-    end)
-end
-
 function Smart_rename()
     local current_name = vim.fn.expand("<cword>")
     vim.ui.input({
