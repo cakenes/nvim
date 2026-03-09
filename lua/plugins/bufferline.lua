@@ -61,5 +61,12 @@ return {
                 end)
             end,
         })
+        vim.api.nvim_create_autocmd("BufEnter", {
+            callback = function()
+                vim.schedule(function()
+                    pcall(require("bufferline").move_to, 1)
+                end)
+            end,
+        })
     end,
 }
