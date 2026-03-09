@@ -17,6 +17,8 @@ return {
 
         local c = require("vscode.colors").get_colors()
 
+        vim.api.nvim_set_hl(0, "NotifyBackground", { bg = "#222222" })
+
         vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = c.vscLineNumber, bg = "NONE" })
         vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = c.vscLineNumber, bg = "NONE" })
         vim.api.nvim_set_hl(0, "DiagnosticUnderLineInfo", { fg = c.vscLineNumber, bg = "NONE" })
