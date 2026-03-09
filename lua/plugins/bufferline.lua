@@ -5,6 +5,15 @@ local colors = {
     blue = "#0a7aca",
 }
 
+local mru_counter = 0
+local mru_order = {}
+
+local function mru_sort(a, b)
+    local a_order = mru_order[a.id] or 0
+    local b_order = mru_order[b.id] or 0
+    return a_order > b_order
+end
+
 return {
     "akinsho/bufferline.nvim",
     opts = {
@@ -54,17 +63,15 @@ return {
     },
     config = function(_, opts)
         require("bufferline").setup(opts)
-        vim.api.nvim_create_autocmd("BufAdd", {
-            callback = function()
-                vim.schedule(function()
-                    pcall(nvim_bufferline)
-                end)
-            end,
-        })
         vim.api.nvim_create_autocmd("BufEnter", {
             callback = function()
+                local buf = vim.api.nvim_get_current_buf()
+                mru_counter = mru_counter + 1
+                mru_order[buf] = mru_counter
                 vim.schedule(function()
-                    pcall(require("bufferline").move_to, 1)
+                    if vim.fn.buflisted(buf) == 1 then
+                        require("bufferline").sort_by(mru_sort)
+                    end
                 end)
             end,
         })
