@@ -3,6 +3,7 @@ vim.keymap.set("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Open lazy" })
 vim.keymap.set("n", "<leader>M", "<cmd>Mason<cr>", { desc = "Open mason" })
 vim.keymap.set("n", "<leader>T", "<cmd>terminal<cr>", { desc = "Open terminal" })
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 vim.keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", { desc = "Code definition" })
@@ -22,7 +23,8 @@ vim.keymap.set({"v", "n"}, "<BS>", "X", { desc = "Delete char before cursor" })
 -- Ai
 vim.keymap.set({"n", "v"}, "<leader>aa", "<cmd>CodeCompanion<cr>", { desc = "Ai: Agent prompt" })
 vim.keymap.set({"n", "v"}, "<leader>at", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Ai: Chat toggle" })
-vim.keymap.set({"n", "v"}, "<leader>as", function() Codecompanion_stop() end, { desc = "Ai: Stop request" })
+vim.keymap.set({"n", "v"}, "<leader>ag", function() code_companion_generate() end, { desc = "Ai: Agent generate" })
+vim.keymap.set({"n", "v"}, "<leader>as", function() code_companion_stop() end, { desc = "Ai: Stop request" })
 vim.keymap.set("n", "<leader>am", "<cmd>CopilotChatModels<cr>", { desc = "Code: Copilot models" })
 
 -- Buffer
@@ -42,7 +44,7 @@ vim.keymap.set("n", "<leader>b<C-Tab>", "<cmd>bprevious<cr>", { desc = "Buffer: 
 vim.keymap.set("n", "<C-Esc>", "<cmd>bdelete<cr>", { desc = "Buffer: Delete" })
 
 -- Code
-vim.keymap.set({"n", "v"}, "<F2>", function() Smart_rename() end, { desc = "Code: Rename" })
+vim.keymap.set({"n", "v"}, "<F2>", function() smart_rename() end, { desc = "Code: Rename" })
 vim.keymap.set("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", { desc = "Code: Rename" })
 vim.keymap.set("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { desc = "Code: Action" })
 vim.keymap.set("n", "<leader>cf", "<cmd>lua vim.lsp.buf.format()<CR>", { desc = "Code: Format" })
@@ -79,9 +81,9 @@ vim.keymap.set("n", "<leader>ef", "<cmd>Neotree float<cr>", { desc = "Explorer: 
 -- Find
 vim.keymap.set("n", "<leader><space>", "<cmd>Telescope git_files<cr>", { desc = "Find: Git" })
 vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Find: Grep" })
-vim.keymap.set("n", "<leader>fG", function() Grep_cached_files() end, { desc = "Find: Cached grep" })
+vim.keymap.set("n", "<leader>fG", function() grep_cached_files() end, { desc = "Find: Cached grep" })
 vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Find: Recent" })
-vim.keymap.set("n", "<leader>ff", function() Project_oldfiles() end, { desc = "Find: Project recent" })
+vim.keymap.set("n", "<leader>ff", function() project_old_files() end, { desc = "Find: Project recent" })
 vim.keymap.set("n", "<leader>fa", "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<cr>", { desc = "Find: All" })
 vim.keymap.set("n", "<leader>fb", "<cmd>Telescope git_commits<cr>", { desc = "Find: Git commit" })
 vim.keymap.set("n", "<leader>fc", "<cmd>Telescope git_bcommits<cr>", { desc = "Find: Git commit (current file)" })

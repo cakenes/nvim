@@ -45,8 +45,8 @@ return {
                     fallback()
                 end, { "i", "s" }),
                 ["<Tab>"] = cmp.mapping(function(fallback)
-                    if Copilot_Is_Visible() then
-                        if not Copilot_Suggestion_Starts_With_Whitespace() then
+                    if copilot_is_visible() then
+                        if not copilot_suggestion_starts_with_whitespace() then
                             local keys = vim.fn["copilot#Accept"]("<CR>")
                             if keys and keys ~= "" then
                                 vim.api.nvim_feedkeys(keys, "n", false)
@@ -67,7 +67,7 @@ return {
                     fallback()
                 end, { "i", "s" }),
                 ["<Esc>"] = cmp.mapping(function(fallback)
-                    if cmp.visible() or Copilot_Is_Visible() then
+                    if cmp.visible() or copilot_is_visible() then
                         vim.cmd("call copilot#Dismiss()")
                         cmp.close()
                     else

@@ -27,7 +27,10 @@ return {
         },
         interactions = {
             chat = {
-                adapter = "copilot",
+                adapter = {
+                    name = "copilot",
+                    model = "claude-opus-4.6",
+                },
                 keymaps = {
                     close = {
                         modes = {
@@ -39,7 +42,7 @@ return {
                         description = "[Chat] Close",
                     },
                     stop = {
-                        modes = { 
+                        modes = {
                             n = "<C-c>",
                             v = "<C-c>",
                             i = "<C-c>",
@@ -50,10 +53,16 @@ return {
                 },
             },
             inline = {
-                adapter = "copilot",
+                adapter = {
+                    name = "copilot",
+                    model = "claude-opus-4.6",
+                },
             },
             cmd = {
-                adapter = "copilot",
+                adapter = {
+                    name = "copilot",
+                    model = "claude-opus-4.6",
+                },
             },
             shared = {
                 keymaps = {

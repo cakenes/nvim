@@ -1,11 +1,11 @@
-function Copilot_chat(command)
+function copilot_chat(command)
     local input = vim.fn.input("Copilot Chat: ")
     if input ~= "" then
         vim.cmd(command .. " " .. input)
     end
 end
 
-function Copilot_Is_Visible()
+function copilot_is_visible()
     local ns = vim.api.nvim_get_namespaces()["github-copilot"]
     if not ns then
         return false
@@ -15,7 +15,7 @@ function Copilot_Is_Visible()
     return #marks > 0
 end
 
-function Copilot_Suggestion_Text()
+function copilot_suggestion_text()
     local ns = vim.api.nvim_get_namespaces()["github-copilot"]
     if not ns then
         return nil
@@ -36,8 +36,8 @@ function Copilot_Suggestion_Text()
     return s ~= "" and s or nil
 end
 
-function Copilot_Suggestion_Starts_With_Whitespace()
-    local s = Copilot_Suggestion_Text()
+function copilot_suggestion_starts_with_whitespace()
+    local s = copilot_suggestion_text()
     if not s then
         return false
     end
@@ -45,7 +45,7 @@ function Copilot_Suggestion_Starts_With_Whitespace()
     return first == " " or first == "\t"
 end
 
-function Grep_cached_files()
+function grep_cached_files()
     local builtin = require("telescope.builtin")
 
     local files = vim.fn.systemlist("git ls-files --cached")
@@ -58,7 +58,7 @@ function Grep_cached_files()
     builtin.grep_string({ search_dirs = files })
 end
 
-function Is_Neotree_Open()
+function is_neotree_open()
     for _, win in ipairs(vim.api.nvim_list_wins()) do
         local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(win))
         if bufname:match("neo%-tree") then
@@ -68,8 +68,8 @@ function Is_Neotree_Open()
     return false
 end
 
-function Dual_neotree()
-    if Is_Neotree_Open() then
+function dual_neotree()
+    if is_neotree_open() then
         vim.cmd("Neotree close")
         return
     else
@@ -79,14 +79,14 @@ function Dual_neotree()
     end
 end
 
-function Codecompanion_stop()
+function code_companion_stop()
     local chat = require("codecompanion").last_chat()
     if chat then
         chat:stop()
     end
 end
 
-function Smart_rename()
+function smart_rename()
     local current_name = vim.fn.expand("<cword>")
     vim.ui.input({
         prompt = "Rename " .. current_name .. " to: ",
@@ -98,12 +98,7 @@ function Smart_rename()
     end)
 end
 
-function Biome_cleanup()
-    vim.cmd("!biome check --fix --unsafe %")
-    vim.cmd("edit")
-end
-
-function Project_oldfiles()
+function project_old_files()
     local telescope = require("telescope")
     local builtin = require("telescope.builtin")
 
@@ -124,4 +119,17 @@ function Project_oldfiles()
         only_cwd = true,
         results = files,
     })
+end
+
+function code_companion_generate()
+    local prompt = "Fill in the function body. Infer the correct behavior from the function name, parameters, types, and surrounding context."
+    local mode = vim.fn.mode()
+    if mode == "v" or mode == "V" or mode == "\22" then
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "x", false)
+        vim.schedule(function()
+            vim.cmd("'<,'>CodeCompanion \"" .. prompt .. "\"")
+        end)
+    else
+        vim.cmd('CodeCompanion "' .. prompt .. '"')
+    end
 end
