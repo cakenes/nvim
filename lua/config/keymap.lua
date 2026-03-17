@@ -74,6 +74,7 @@ vim.keymap.set("n", "<leader>gl", "<cmd>LazyGit<cr>", { desc = "Git: Lazy" })
 -- Explorer
 vim.keymap.set("n", "<leader>ee", "<cmd>Neotree toggle<cr>", { desc = "Explorer: Toggle" })
 vim.keymap.set("n", "<leader>eg", "<cmd>Neotree git_status<cr>", { desc = "Explorer: Git status" })
+vim.keymap.set("n", "<leader>es", function () dual_neotree() end, { desc = "Explorer: Split neotree" })
 vim.keymap.set("n", "<leader>eb", "<cmd>Neotree buffers<cr>", { desc = "Explorer: Buffers" })
 vim.keymap.set("n", "<leader>ef", "<cmd>Neotree float<cr>", { desc = "Explorer: Float" })
 
