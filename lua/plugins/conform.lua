@@ -7,6 +7,7 @@ return {
             lsp_fallback = true,
         },
         formatters_by_ft = {
+            go = { "gofmt" },
             svelte = { "prettierd", "prettier" },
             javascript = { "biome" },
             javascriptreact = { "biome" },
