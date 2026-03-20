@@ -121,13 +121,38 @@ function project_old_files()
     })
 end
 
+function open_or_focus_copilot()
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_loaded(buf) then
+            local bt = vim.api.nvim_buf_get_option(buf, "buftype")
+            if bt == "terminal" then
+                local name = vim.api.nvim_buf_get_name(buf)
+                if name:match("copilot") then
+                    for _, win in ipairs(vim.api.nvim_list_wins()) do
+                        if vim.api.nvim_win_get_buf(win) == buf then
+                            vim.api.nvim_set_current_win(win)
+                            return
+                        end
+                    end
+
+                    vim.api.nvim_set_current_buf(buf)
+                    return
+                end
+            end
+        end
+    end
+
+    vim.cmd("terminal copilot")
+end
+
 function code_companion_generate()
-    local prompt = "Fill in the function body. Infer the correct behavior from the function name, parameters, types, and surrounding context."
+    local prompt =
+        "Fill in the function body. Infer the correct behavior from the function name, parameters, types, and surrounding context."
     local mode = vim.fn.mode()
     if mode == "v" or mode == "V" or mode == "\22" then
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "x", false)
         vim.schedule(function()
-            vim.cmd("'<,'>CodeCompanion \"" .. prompt .. "\"")
+            vim.cmd("'<,'>CodeCompanion \"" .. prompt .. '"')
         end)
     else
         vim.cmd('CodeCompanion "' .. prompt .. '"')

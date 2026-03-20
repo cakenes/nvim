@@ -24,9 +24,11 @@ vim.keymap.set({"n", "v"}, "<leader>aa", "<cmd>CodeCompanion<cr>", { desc = "Ai:
 vim.keymap.set({"n", "v"}, "<leader>at", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Ai: Chat toggle" })
 vim.keymap.set({"n", "v"}, "<leader>ag", function() code_companion_generate() end, { desc = "Ai: Agent generate" })
 vim.keymap.set({"n", "v"}, "<leader>as", function() code_companion_stop() end, { desc = "Ai: Stop request" })
+vim.keymap.set({"n", "v"}, "<leader>ac", function() open_or_focus_copilot() end, { desc = "Ai: Copilot-cli" })
 vim.keymap.set("n", "<leader>am", "<cmd>CopilotChatModels<cr>", { desc = "Code: Copilot models" })
 
 -- Buffer
+vim.keymap.set("n", "b", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>",{ desc = "Buffer: List" })
 vim.keymap.set("n", "<leader>bb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>",{ desc = "Buffer: List" })
 vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Buffer: Delete" })
 vim.keymap.set("n", "<leader>bo", "<cmd>BufferLineCloseOthers<cr>", { desc = "Buffer: Delete other" })
