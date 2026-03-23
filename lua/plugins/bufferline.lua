@@ -43,7 +43,6 @@ return {
             right_mouse_command = function(n)
                 require("mini.bufremove").delete(n, false)
             end,
-            diagnostics = "nvim_lsp",
             always_show_bufferline = true,
             diagnostics_indicator = function(_, _, diag)
                 local icons = { Error = " ", Warn = " ", Hint = " ", Info = " " }
@@ -63,17 +62,18 @@ return {
     },
     config = function(_, opts)
         require("bufferline").setup(opts)
-        vim.api.nvim_create_autocmd("BufEnter", {
-            callback = function()
-                local buf = vim.api.nvim_get_current_buf()
-                mru_counter = mru_counter + 1
-                mru_order[buf] = mru_counter
-                vim.schedule(function()
-                    if vim.fn.buflisted(buf) == 1 then
-                        require("bufferline").sort_by(mru_sort)
-                    end
-                end)
-            end,
-        })
+        -- Auto-sort buffers by most recently used
+        -- vim.api.nvim_create_autocmd("BufEnter", {
+        --     callback = function()
+        --         local buf = vim.api.nvim_get_current_buf()
+        --         mru_counter = mru_counter + 1
+        --         mru_order[buf] = mru_counter
+        --         vim.schedule(function()
+        --             if vim.fn.buflisted(buf) == 1 then
+        --                 require("bufferline").sort_by(mru_sort)
+        --             end
+        --         end)
+        --     end,
+        -- })
     end,
 }
