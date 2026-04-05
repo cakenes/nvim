@@ -15,6 +15,13 @@ vim.api.nvim_create_autocmd("CmdwinEnter", {
     end,
 })
 
+-- Enable autoread to automatically reload files when they are changed outside of Neovim
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+    command = "if mode() != 'c' | checktime | endif",
+    pattern = "*",
+})
+
 require("config.keymap")
 require("config.options")
 require("config.helper")
