@@ -17,6 +17,7 @@ return {
             css = { "prettierd", "prettier" },
             scss = { "prettierd", "prettier" },
             json = { "prettierd", "prettier" },
+            svg = { "prettierd", "prettier" },
             lua = { "stylua" },
             sh = { "shfmt" },
         },

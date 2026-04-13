@@ -13,6 +13,7 @@ return {
             end,
         },
         { "nvim-telescope/telescope-ui-select.nvim" },
+        { "nvim-telescope/telescope-live-grep-args.nvim" },
     },
     config = function()
         require("telescope").setup({
@@ -29,6 +30,7 @@ return {
         })
         pcall(require("telescope").load_extension, "fzf")
         pcall(require("telescope").load_extension, "ui-select")
+        pcall(require("telescope").load_extension, "live_grep_args")
         local builtin = require("telescope.builtin")
     end,
 }

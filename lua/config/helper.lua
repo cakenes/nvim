@@ -158,3 +158,65 @@ function code_companion_generate()
         vim.cmd('CodeCompanion "' .. prompt .. '"')
     end
 end
+
+function grep_visual()
+    vim.cmd('normal! "vy')
+
+    local text = vim.fn.getreg("v")
+
+    if not text or text == "" then
+        return
+    end
+
+    local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+    if git_root == nil or git_root == "" then
+        git_root = vim.fn.getcwd()
+    end
+
+    require("telescope").extensions.live_grep_args.live_grep_args({
+        default_text = text,
+        cwd = git_root,
+    })
+end
+
+function grep_word()
+    local word = vim.fn.expand("<cword>")
+
+    if not word or word == "" then
+        return
+    end
+
+    local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+    if git_root == nil or git_root == "" then
+        git_root = vim.fn.getcwd()
+    end
+
+    require("telescope").extensions.live_grep_args.live_grep_args({
+        default_text = word,
+        cwd = git_root,
+    })
+end
+
+local last_grep = ""
+
+function live_grep_remember()
+    local lga = require("telescope").extensions.live_grep_args
+
+    lga.live_grep_args({
+        default_text = last_grep,
+
+        attach_mappings = function(_, map)
+            map("i", "<CR>", function(prompt_bufnr)
+                local action_state = require("telescope.actions.state")
+                local actions = require("telescope.actions")
+
+                local prompt = action_state.get_current_line()
+                last_grep = prompt
+
+                actions.select_default(prompt_bufnr)
+            end)
+
+            return true
+        end,
+    })
+end

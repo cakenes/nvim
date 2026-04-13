@@ -18,6 +18,7 @@ vim.keymap.set("n", "<S-Tab>", "<<", { desc = "Indent line left" })
 vim.keymap.set({"v"}, "<Tab>", ">gv", { desc = "Indent right and keep selection" })
 vim.keymap.set({"v"}, "<S-Tab>", "<gv", { desc = "Indent left and keep selection" })
 vim.keymap.set({"v", "n"}, "<BS>", "X", { desc = "Delete char before cursor" })
+vim.keymap.set({"i", "n", "v"}, "<C-a>", "<Esc>ggVG", { noremap = true })
 
 -- Ai
 vim.keymap.set({"n", "v"}, "<leader>aa", "<cmd>CodeCompanion<cr>", { desc = "Ai: Agent prompt" })
@@ -82,7 +83,9 @@ vim.keymap.set("n", "<leader>ef", "<cmd>Neotree float<cr>", { desc = "Explorer: 
 
 -- Find
 vim.keymap.set("n", "<leader><space>", "<cmd>Telescope git_files<cr>", { desc = "Find: Git" })
-vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Find: Grep" })
+vim.keymap.set("v", "<leader>fv", function() grep_visual() end, { desc = "Find: Visual" })
+vim.keymap.set("n", "<leader>fw", function() grep_word() end, { desc = "Find: Word" })
+vim.keymap.set("n", "<leader>fg", function() live_grep_remember() end, { desc = "Find: Grep" })
 vim.keymap.set("n", "<leader>fG", function() grep_cached_files() end, { desc = "Find: Cached grep" })
 vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Find: Recent" })
 vim.keymap.set("n", "<leader>ff", function() project_old_files() end, { desc = "Find: Project recent" })
