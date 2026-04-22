@@ -8,7 +8,7 @@ local colors = {
     --nord
     red = "#BF616A", -- nord11
     grey = "#3B4252", -- nord1
-    black = "#2E3440", -- nord0
+    black = "#1F242C", -- nord0
     blue = "#81A1C1", -- nord9
 }
 
