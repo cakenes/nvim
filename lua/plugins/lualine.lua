@@ -1,10 +1,19 @@
 local colors = {
-    red = "#f44747",
-    grey = "#383a42",
-    black = "#1e1e1e",
-    light_blue = "#5cb6f8",
-    orange = "#ffaf00",
-    blue = "#0a7aca",
+    -- vscode
+    -- red = "#f44747",
+    -- grey = "#383a42",
+    -- black = "#1e1e1e",
+    -- light_blue = "#5cb6f8",
+    -- orange = "#ffaf00",
+    -- blue = "#0a7aca",
+
+    -- nord
+    red = "#BF616A", -- nord11
+    grey = "#3B4252", -- nord1
+    black = "#2E3440", -- nord0
+    light_blue = "#88C0D0", -- nord8
+    orange = "#D08770", -- nord12
+    blue = "#81A1C1", -- nord9
 }
 
 local function process_sections(sections)
