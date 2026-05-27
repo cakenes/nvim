@@ -10,6 +10,14 @@ return {
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
             callback = function(event)
+                local client = vim.lsp.get_client_by_id(event.data.client_id)
+                if client and client.name == "ts_ls" then
+                    local ft = vim.bo[event.buf].filetype
+                    if ft == "javascript" or ft == "javascriptreact" then
+                        vim.lsp.buf_detach_client(event.buf, client.id)
+                        return
+                    end
+                end
                 local map = function(keys, func, desc)
                     vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
                 end
@@ -30,6 +38,9 @@ return {
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
         local servers = {
+            ts_ls = {
+                filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+            },
             lua_ls = {
                 settings = {
                     Lua = {
