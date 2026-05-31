@@ -19,6 +19,7 @@ vim.keymap.set({"v"}, "<Tab>", ">gv", { desc = "Indent right and keep selection"
 vim.keymap.set({"v"}, "<S-Tab>", "<gv", { desc = "Indent left and keep selection" })
 vim.keymap.set({"v", "n"}, "<BS>", "X", { desc = "Delete char before cursor" })
 vim.keymap.set({"i", "n", "v"}, "<C-a>", "<Esc>ggVG", { noremap = true })
+vim.keymap.set("n", "dm", "d%", { noremap = true, desc = "Delete to matching pair" })
 
 -- Ai
 vim.keymap.set({"n", "v"}, "<leader>aa", "<cmd>CodeCompanion<cr>", { desc = "Ai: Agent prompt" })
