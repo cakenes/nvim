@@ -28,7 +28,7 @@ return {
             "vimdoc",
             "yaml",
         }
-        require("nvim-treesitter").install(parsers)
+        require("nvim-treesitter").update(parsers)
 
         -- Enable highlighting, indentation, and incremental selection per filetype
         vim.api.nvim_create_autocmd("FileType", {
