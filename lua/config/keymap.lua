@@ -45,10 +45,8 @@ vim.keymap.set("n", "<leader>bf", "<cmd>bdelete!<cr>", { desc = "Buffer: Force d
 vim.keymap.set("n", "<leader>bp", "<cmd>BufferLineTogglePin<cr>", { desc = "Buffer: Toggle pin" })
 vim.keymap.set("n", "<leader>ba", "<cmd>bufdo bdelete<cr>", { desc = "Buffer: Delete all saved" })
 vim.keymap.set("n", "<leader>bA", "<cmd>bufdo bdelete!<cr>", { desc = "Buffer: Force delete all" })
-vim.keymap.set("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { desc = "Buffer: Prev" })
-vim.keymap.set("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Buffer: Next" })
-vim.keymap.set("n", "<leader>b<Tab>", "<cmd>bnext<cr>", { desc = "Buffer: Next" })
-vim.keymap.set("n", "<leader>b<C-Tab>", "<cmd>bprevious<cr>", { desc = "Buffer: Prev" })
+vim.keymap.set("n", "<C-Right>", "<cmd>bnext<cr>", { desc = "Buffer: Next" })
+vim.keymap.set("n", "<C-Left>", "<cmd>bprevious<cr>", { desc = "Buffer: Prev" })
 vim.keymap.set("n", "<C-Esc>", "<cmd>bdelete<cr>", { desc = "Buffer: Delete" })
 
 -- Code
@@ -117,10 +115,10 @@ vim.keymap.set("n", "<leader>tL", "<cmd>TroubleToggle loclist<cr>", { desc = "Tr
 vim.keymap.set("n", "<leader>tq", "<cmd>TroubleToggle quickfix<cr>", { desc = "Trouble: Quickfix list" })
 
 -- Window
-vim.keymap.set("n", "<C-Left>", "<C-w>h", { desc = "Window: Go left", remap = true })
-vim.keymap.set("n", "<C-Down>", "<C-w>j", { desc = "Window: Go down", remap = true })
-vim.keymap.set("n", "<C-Up>", "<C-w>k", { desc = "Window: Go up", remap = true })
-vim.keymap.set("n", "<C-Right>", "<C-w>l", { desc = "Window: Go right", remap = true })
+vim.keymap.set("n", "<A-Left>", "<C-w>h", { desc = "Window: Go left", remap = true })
+vim.keymap.set("n", "<A-Down>", "<C-w>j", { desc = "Window: Go down", remap = true })
+vim.keymap.set("n", "<A-Up>", "<C-w>k", { desc = "Window: Go up", remap = true })
+vim.keymap.set("n", "<A-Right>", "<C-w>l", { desc = "Window: Go right", remap = true })
 vim.keymap.set("n", "<D-Left>", "<C-w>h", { desc = "Window: Go left", remap = true }) -- For Mac
 vim.keymap.set("n", "<D-Down>", "<C-w>j", { desc = "Window: Go down", remap = true }) -- For Mac
 vim.keymap.set("n", "<D-Up>", "<C-w>k", { desc = "Window: Go up", remap = true }) -- For Mac
