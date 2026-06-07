@@ -22,6 +22,13 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
     pattern = "*",
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "spectre_panel",
+    callback = function()
+        vim.keymap.set("n", "<Esc>", "<cmd>q<CR>", { buffer = true })
+    end,
+})
+
 require("config.keymap")
 require("config.options")
 require("config.helper")
