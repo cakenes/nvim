@@ -21,6 +21,11 @@ vim.keymap.set({"v", "n"}, "<BS>", "X", { desc = "Delete char before cursor" })
 vim.keymap.set({"i", "n", "v"}, "<C-a>", "<Esc>ggVG", { noremap = true })
 vim.keymap.set("n", "dm", "d%", { noremap = true, desc = "Delete to matching pair" })
 
+-- Spectre
+vim.keymap.set("n", "<leader>S", "<cmd>Spectre<cr>", { desc = "Spectre" })
+vim.keymap.set('n', '<leader>sw', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', { desc = "Spectre: word" })
+vim.keymap.set('n', '<leader>sf', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', { desc = "Spectre: file"})
+
 -- Ai
 vim.keymap.set({"n", "v"}, "<leader>aa", "<cmd>CodeCompanion<cr>", { desc = "Ai: Agent prompt" })
 vim.keymap.set({"n", "v"}, "<leader>at", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Ai: Chat toggle" })
