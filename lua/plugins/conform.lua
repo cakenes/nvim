@@ -20,6 +20,7 @@ return {
             svg = { "prettierd", "prettier" },
             lua = { "stylua" },
             sh = { "shfmt" },
+            kdl = { "kdlfmt" },
         },
     },
 }
