@@ -1,8 +1,15 @@
 local colors = {
-    red = "#f44747",
-    grey = "#383a42",
-    black = "#1e1e1e",
-    blue = "#0a7aca",
+    -- vscode
+    -- red = "#f44747",
+    -- grey = "#383a42",
+    -- black = "#1e1e1e",
+    -- blue = "#0a7aca",
+
+    -- nord
+    red = "#BF616A", -- nord11
+    grey = "#3B4252", -- nord1
+    black = "#1F242C", -- nord0
+    blue = "#81A1C1", -- nord9
 }
 
 local mru_counter = 0
