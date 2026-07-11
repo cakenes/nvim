@@ -21,11 +21,6 @@ vim.keymap.set({"v", "n"}, "<BS>", "X", { desc = "Delete char before cursor" })
 vim.keymap.set({"i", "n", "v"}, "<C-a>", "<Esc>ggVG", { noremap = true })
 vim.keymap.set("n", "dm", "d%", { noremap = true, desc = "Delete to matching pair" })
 
--- Spectre
-vim.keymap.set("n", "<leader>S", "<cmd>Spectre<cr>", { desc = "Spectre" })
-vim.keymap.set('n', '<leader>sw', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', { desc = "Spectre: word" })
-vim.keymap.set('n', '<leader>sf', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', { desc = "Spectre: file"})
-
 -- Ai
 vim.keymap.set({"n", "v"}, "<leader>aa", "<cmd>CodeCompanion<cr>", { desc = "Ai: Agent prompt" })
 vim.keymap.set({"n", "v"}, "<leader>at", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Ai: Chat toggle" })
@@ -70,13 +65,7 @@ vim.keymap.set("n", "<leader>do", "<cmd>DapStepOut<cr>", { desc = "Debug: Step o
 vim.keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<cr>", { desc = "Debug: Toggle breakpoint" })
 
 -- Git
-vim.keymap.set("n", "<leader>gd", "<cmd>Telescope git_status<cr>", { desc = "Git: Diff/status" })
-vim.keymap.set("n", "<leader>gi", "<cmd>Octo issue list<cr>", { desc = "Git: Github issues" })
-vim.keymap.set("n", "<leader>gp", "<cmd>Octo pr list<cr>", { desc = "Git: Github pull requests" })
-vim.keymap.set("n", "<leader>gw", "<cmd>Octo workflow list<cr>", { desc = "Git: Github workflow list" })
-vim.keymap.set("n", "<leader>gr", "<cmd>Octo run list<cr>", { desc = "Git: Github run list" })
-vim.keymap.set("n", "<leader>gc", "<cmd>Octo issue create<cr>", { desc = "Git: Github create issue" })
-vim.keymap.set("n", "<leader>gl", "<cmd>LazyGit<cr>", { desc = "Git: Lazy" })
+vim.keymap.set("n", "<leader>gl", "<cmd>LazyGit<cr>", { desc = "Git: Lazygit" })
 
 -- Explorer
 vim.keymap.set("n", "<leader>ee", "<cmd>Neotree toggle<cr>", { desc = "Explorer: Toggle", nowait = true })

@@ -1,5 +1,6 @@
 return {
-    "cakenes/nord.nvim",
+    "shaunsingh/nord.nvim",
+    -- "cakenes/nord.nvim",
     config = function()
         vim.g.nord_italic = true
         vim.g.nord_borders = true
