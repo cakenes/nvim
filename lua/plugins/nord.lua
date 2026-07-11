@@ -5,7 +5,10 @@ return {
         vim.g.nord_borders = true
         vim.g.nord_disable_background = false
 
-        require("nord").set()
+        -- Use `:colorscheme` (not require("nord").set() directly) so the
+        -- ColorScheme autocmd fires; plugins like indent-blankline rely on
+        -- it to recompute their highlight groups against nord's colors.
+        vim.cmd.colorscheme("nord")
 
         local colors = require("nord.colors")
 
@@ -52,5 +55,14 @@ return {
         vim.api.nvim_set_hl(0, "HlSearchLens", { fg = colors.nord3, bg = "NONE", blend = 100 })
         vim.api.nvim_set_hl(0, "HlSearchLensNear", { fg = colors.nord3, bg = "NONE", blend = 100 })
         vim.api.nvim_set_hl(0, "HlSearchLensCurrent", { fg = colors.nord3, bg = "NONE", blend = 100 })
+
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = { "json", "jsonc" },
+            callback = function()
+                vim.api.nvim_set_hl(0, "jsonStringMatch", { fg = "#d8dee9" })
+                vim.api.nvim_set_hl(0, "jsonQuote", { fg = "#d8dee9" })
+                vim.api.nvim_set_hl(0, "jsonFold", { fg = "#d8dee9" })
+            end,
+        })
     end,
 }
