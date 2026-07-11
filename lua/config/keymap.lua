@@ -22,7 +22,8 @@ vim.keymap.set({"i", "n", "v"}, "<C-a>", "<Esc>ggVG", { noremap = true })
 vim.keymap.set("n", "dm", "d%", { noremap = true, desc = "Delete to matching pair" })
 
 -- Replace
-vim.keymap.set("n", "<leader>r", "<cmd>lua require('plugins.searchandreplace').search_and_replace()<cr>", { desc = "Replace: Search & Replace" })
+vim.keymap.set("n", "<leader>rw", function() replace_all_of_cursor_word() end, { desc = "Replace: Cursor" })
+vim.keymap.set("n", "<leader>rf", function() find_and_replace_prompt() end, { desc = "Replace:  Find and replace" })
 
 -- Ai
 vim.keymap.set({"n", "v"}, "<leader>aa", "<cmd>CodeCompanion<cr>", { desc = "Ai: Agent prompt" })

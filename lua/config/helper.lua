@@ -98,6 +98,171 @@ function smart_rename()
     end)
 end
 
+function highlight_all_of_cursor_word()
+    local word = vim.fn.expand("<cword>")
+    if word and word ~= "" then
+        local search = "/" .. vim.pesc(word)
+        vim.cmd("set hlsearch")
+        vim.api.nvim_feedkeys(search, "n", false)
+    end
+end
+
+function replace_all_of_cursor_word()
+    local word = vim.fn.expand("<cword>")
+    if not word or word == "" then
+        return
+    end
+
+    local pattern = "\\<" .. vim.fn.escape(word, "\\/.*$^~[]") .. "\\>"
+    local count = vim.fn.searchcount({ pattern = pattern, maxcount = 0 }).total
+
+    if count == 0 then
+        return
+    end
+
+    vim.fn.setreg("/", pattern)
+    vim.cmd("set hlsearch")
+
+    vim.ui.input({
+        prompt = "Replace '" .. word .. "' (" .. count .. " occurrence(s)) with: ",
+        default = "",
+    }, function(new_text)
+        if new_text ~= nil and new_text ~= "" and new_text ~= word then
+            local replacement = vim.fn.escape(new_text, "\\/&~")
+            local cursor = vim.api.nvim_win_get_cursor(0)
+            vim.cmd(string.format("silent! %%s/%s/%s/g", pattern, replacement))
+            vim.api.nvim_win_set_cursor(0, cursor)
+        end
+        vim.cmd("nohlsearch")
+    end)
+end
+
+local function live_prompt(title, on_change, on_confirm, on_cancel)
+    local src_win = vim.api.nvim_get_current_win()
+
+    local buf = vim.api.nvim_create_buf(false, true)
+    vim.bo[buf].bufhidden = "wipe"
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, { "" })
+
+    local width = 50
+    local win = vim.api.nvim_open_win(buf, true, {
+        relative = "editor",
+        width = width,
+        height = 1,
+        row = math.floor(vim.o.lines / 2) - 1,
+        col = math.floor((vim.o.columns - width) / 2),
+        style = "minimal",
+        border = "rounded",
+        title = title,
+        title_pos = "left",
+    })
+
+    vim.cmd("startinsert!")
+
+    local closed = false
+    local function close()
+        if closed then
+            return
+        end
+        closed = true
+        if vim.api.nvim_win_is_valid(win) then
+            vim.api.nvim_win_close(win, true)
+        end
+        if vim.api.nvim_win_is_valid(src_win) then
+            vim.api.nvim_set_current_win(src_win)
+        end
+    end
+
+    local function current_text()
+        return vim.api.nvim_buf_get_lines(buf, 0, 1, false)[1] or ""
+    end
+
+    vim.api.nvim_create_autocmd("TextChangedI", {
+        buffer = buf,
+        callback = function()
+            on_change(current_text())
+        end,
+    })
+
+    local function confirm()
+        local text = current_text()
+        close()
+        on_confirm(text)
+    end
+
+    local function cancel()
+        close()
+        if on_cancel then
+            on_cancel()
+        end
+    end
+
+    vim.keymap.set({ "i", "n" }, "<CR>", confirm, { buffer = buf })
+    vim.keymap.set({ "i", "n" }, "<Esc>", cancel, { buffer = buf })
+end
+
+function find_and_replace_prompt()
+    local main_win = vim.api.nvim_get_current_win()
+    local match_id = nil
+
+    local function clear_highlight()
+        if match_id then
+            pcall(vim.api.nvim_win_call, main_win, function()
+                pcall(vim.fn.matchdelete, match_id)
+            end)
+            match_id = nil
+            vim.cmd("redraw")
+        end
+    end
+
+    local function set_highlight(text)
+        clear_highlight()
+        if text == nil or text == "" then
+            return
+        end
+        local pattern = vim.fn.escape(text, "\\/.*$^~[]")
+        vim.api.nvim_win_call(main_win, function()
+            local ok, id = pcall(vim.fn.matchadd, "IncSearch", pattern)
+            if ok then
+                match_id = id
+            end
+        end)
+        vim.cmd("redraw")
+    end
+
+    live_prompt("Search", set_highlight, function(search_text)
+        if search_text == nil or search_text == "" then
+            clear_highlight()
+            return
+        end
+
+        local pattern = vim.fn.escape(search_text, "\\/.*$^~[]")
+        local count
+        vim.api.nvim_win_call(main_win, function()
+            count = vim.fn.searchcount({ pattern = pattern, maxcount = 0 }).total
+        end)
+
+        if count == 0 then
+            clear_highlight()
+            return
+        end
+
+        set_highlight(search_text)
+
+        live_prompt("Replace '" .. search_text .. "' (" .. count .. " occurrence(s))", function() end, function(new_text)
+            if new_text ~= nil and new_text ~= "" and new_text ~= search_text then
+                local replacement = vim.fn.escape(new_text, "\\/&~")
+                vim.api.nvim_win_call(main_win, function()
+                    local cursor = vim.api.nvim_win_get_cursor(0)
+                    vim.cmd(string.format("silent! %%s/%s/%s/g", pattern, replacement))
+                    vim.api.nvim_win_set_cursor(0, cursor)
+                end)
+            end
+            clear_highlight()
+        end, clear_highlight)
+    end, clear_highlight)
+end
+
 function project_old_files()
     local telescope = require("telescope")
     local builtin = require("telescope.builtin")
