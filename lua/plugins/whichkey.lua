@@ -11,9 +11,8 @@ return {
             { "<leader>e", group = "[E]xplorer", mode = { "n", "v" } },
             { "<leader>f", group = "[F]ind", mode = { "n", "v" } },
             { "<leader>g", group = "[G]oto", mode = { "n", "v" } },
-            { "<leader>s", group = "[S]plit / [S]pectre", mode = { "n", "v" } },
+            { "<leader>r", group = "[R]eplace", mode = { "n", "v" } },
             { "<leader>t", group = "[T]est", mode = { "n", "v" } },
         })
     end,
 }
-

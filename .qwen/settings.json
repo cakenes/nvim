@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Agent(Explore)",
+      "Bash(luajit *)",
+      "Bash(lua5.3 *)"
+    ]
+  },
+  "$version": 4
+}

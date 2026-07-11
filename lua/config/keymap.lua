@@ -1,4 +1,4 @@
--- Common
+
 vim.keymap.set("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Open lazy" })
 vim.keymap.set("n", "<leader>M", "<cmd>Mason<cr>", { desc = "Open mason" })
 vim.keymap.set("n", "<leader>T", "<cmd>terminal<cr>", { desc = "Open terminal" })
@@ -20,6 +20,9 @@ vim.keymap.set({"v"}, "<S-Tab>", "<gv", { desc = "Indent left and keep selection
 vim.keymap.set({"v", "n"}, "<BS>", "X", { desc = "Delete char before cursor" })
 vim.keymap.set({"i", "n", "v"}, "<C-a>", "<Esc>ggVG", { noremap = true })
 vim.keymap.set("n", "dm", "d%", { noremap = true, desc = "Delete to matching pair" })
+
+-- Replace
+vim.keymap.set("n", "<leader>r", "<cmd>lua require('plugins.searchandreplace').search_and_replace()<cr>", { desc = "Replace: Search & Replace" })
 
 -- Ai
 vim.keymap.set({"n", "v"}, "<leader>aa", "<cmd>CodeCompanion<cr>", { desc = "Ai: Agent prompt" })
@@ -86,10 +89,6 @@ vim.keymap.set("n", "<leader>fa", "<cmd>Telescope find_files follow=true no_igno
 vim.keymap.set("n", "<leader>fb", "<cmd>Telescope git_commits<cr>", { desc = "Find: Git commit", nowait = true })
 vim.keymap.set("n", "<leader>fc", "<cmd>Telescope git_bcommits<cr>", { desc = "Find: Git commit (current file)", nowait = true })
 vim.keymap.set("n", "<leader>fs", "<cmd>Telescope git_stash<cr>", { desc = "Find: Git stash", nowait = true })
-
--- Split
-vim.keymap.set("n", "<leader>sh", "<cmd>split<cr>", { desc = "Split: Horizontal" })
-vim.keymap.set("n", "<leader>sv", "<cmd>vsplit<cr>", { desc = "Split: Vertical" })
 
 -- Test
 vim.keymap.set("n", "<leader>tr", "<cmd>Neotest run<cr>", { desc = "Neotest: Run nearest" })
