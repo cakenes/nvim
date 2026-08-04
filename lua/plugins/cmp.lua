@@ -33,7 +33,7 @@ return {
                 documentation = cmp.config.window.bordered(),
             },
             experimental = { ghost_text = false },
-            completion = { completeopt = "menu,menuone,noinsert", scrollbar = false },
+            completion = { completeopt = "menu,noinsert", scrollbar = false },
             mapping = cmp.mapping.preset.insert({
                 ["<CR>"] = cmp.mapping.confirm({ select = true }),
                 ["<Left>"] = cmp.mapping(function(fallback)
