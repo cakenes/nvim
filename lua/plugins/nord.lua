@@ -45,7 +45,7 @@ return {
         vim.api.nvim_set_hl(0, "FloatBorder", { fg = colors.nord3, bg = "NONE" })
 
         -- Git Blame
-        vim.api.nvim_set_hl(0, "GitBlame", { fg = colors.nord3, bg = colors.nord0 })
+        vim.api.nvim_set_hl(0, "GitBlame", { link = "Comment" })
 
         -- Scrollbar
         vim.api.nvim_set_hl(0, "ScrollbarHandle", { bg = colors.nord3, fg = "NONE" })
