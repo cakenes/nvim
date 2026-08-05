@@ -17,7 +17,7 @@ return {
         open_files_do_not_replace_types = { "terminal", "Trouble", "trouble", "qf", "Outline" },
         filesystem = {
             bind_to_cwd = false,
-            follow_current_file = { enabled = true },
+            follow_current_file = { enabled = true, reveal_on_insert = true },
             use_libuv_file_watcher = true,
         },
         window = {
@@ -43,6 +43,26 @@ return {
     config = function(_, opts)
         opts.event_handlers = opts.event_handlers or {}
         require("neo-tree").setup(opts)
+        vim.api.nvim_create_autocmd("BufEnter", {
+            callback = function(args)
+                if vim.bo[args.buf].buftype ~= "" then return end
+                local neotree_win = nil
+                for _, win in ipairs(vim.api.nvim_list_wins()) do
+                    local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(win))
+                    if bufname:match("neo%-tree") then
+                        neotree_win = win
+                        break
+                    end
+                end
+                if neotree_win then
+                    local path = vim.api.nvim_buf_get_name(args.buf)
+                    if path ~= "" then
+                        local manager = require("neo-tree.sources.manager")
+                        manager.navigate("filesystem", nil, path)
+                    end
+                end
+            end,
+        })
         vim.api.nvim_create_autocmd("TermClose", {
             pattern = "*lazygit",
             callback = function()
