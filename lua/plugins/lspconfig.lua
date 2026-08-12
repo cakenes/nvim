@@ -22,7 +22,15 @@ return {
                     vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
                 end
                 local client = vim.lsp.get_client_by_id(event.data.client_id)
-                if client and client.server_capabilities.documentHighlightProvider then
+                -- ts_ls's documentHighlights request can crash tsserver
+                -- ("configFileSpecs" undefined, an upstream TypeScript bug) when it
+                -- reloads the configured project's file list. Skip cursor-hold
+                -- highlighting for ts_ls to avoid triggering the crash.
+                if
+                    client
+                    and client.name ~= "ts_ls"
+                    and client.server_capabilities.documentHighlightProvider
+                then
                     vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
                         buffer = event.buf,
                         callback = vim.lsp.buf.document_highlight,
