@@ -20,6 +20,7 @@ vim.keymap.set({"v"}, "<S-Tab>", "<gv", { desc = "Indent left and keep selection
 vim.keymap.set({"v", "n"}, "<BS>", "X", { desc = "Delete char before cursor" })
 vim.keymap.set({"i", "n", "v"}, "<C-a>", "<Esc>ggVG", { noremap = true })
 vim.keymap.set("n", "dm", "d%", { noremap = true, desc = "Delete to matching pair" })
+vim.keymap.set({"n", "v"}, "<leader>n", "<cmd>enew<cr>", { desc = "New buffer" })
 
 -- Replace
 vim.keymap.set("n", "<leader>rw", function() replace_all_of_cursor_word() end, { desc = "Replace: Cursor" })
@@ -52,7 +53,8 @@ vim.keymap.set("n", "<C-Esc>", "<cmd>bdelete<cr>", { desc = "Buffer: Delete" })
 vim.keymap.set({"n", "v"}, "<F2>", function() smart_rename() end, { desc = "Code: Rename" })
 vim.keymap.set("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", { desc = "Code: Rename" })
 vim.keymap.set("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { desc = "Code: Action" })
-vim.keymap.set("n", "<leader>cf", "<cmd>lua vim.lsp.buf.format()<CR>", { desc = "Code: Format" })
+vim.keymap.set("n", "<leader>cf", function() require("conform").format({ async = true, lsp_fallback = true }) end, { desc = "Code: Format document" })
+vim.keymap.set("n", "<leader>cF", "<cmd>lua vim.lsp.buf.format()<CR>", { desc = "Code: Format (LSP)" })
 vim.keymap.set("n", "<leader>cd", "<cmd>Telescope lsp_definitions<cr>", { desc = "Code: Definition" })
 vim.keymap.set({"n", "v"}, "<F12>", "<cmd>Telescope lsp_definitions<cr>", { desc = "Code: Definition" })
 vim.keymap.set("n", "<leader>ci", "<cmd>Telescope lsp_implementations<cr>", { desc = "Code: Implementation" })
